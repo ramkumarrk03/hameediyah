@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* Palette and type tokens. Rationale in docs/RATIONALE.md. */
+@theme {
+  --color-turmeric: #e0a526;
+  --color-saffron: #d9641e;
+  --color-saffron-deep: #a8460f; /* AA-safe saffron for small text on paper */
+  --color-cinnamon: #6b3a1e;
+  --color-brass: #b08d57;
+  --color-paper: #f5ecd9;
+  --color-paper-deep: #ebdcc0;
+  --color-ink: #24140c;
+  --color-leaf: #3f5a2c;
+
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-body: var(--font-literata), "Georgia", serif;
+  --font-sign: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-tamil: var(--font-tamil), serif;
+
+  --ease-steam: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-pour: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* Display type: Fraunces with soft, slightly wonky optical sizes, like painted shop signs. */
+.font-display {
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+/* Paper grain: an inline SVG noise tile, so nothing is flat. */
+.paper {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .26  0 0 0 0 .12  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    radial-gradient(ellipse at 20% 10%, rgba(224, 165, 38, 0.08), transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(107, 58, 30, 0.07), transparent 55%);
+  background-color: var(--color-paper);
+}
+
+.paper-dark {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .9  0 0 0 0 .7  0 0 0 0 .4  0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    radial-gradient(ellipse at 50% 0%, rgba(224, 165, 38, 0.12), transparent 65%);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Letterpress: a faint debossed impression on display text. */
+.letterpress {
+  text-shadow:
+    0 1px 0 rgba(255, 248, 230, 0.55),
+    0 -1px 0 rgba(36, 20, 12, 0.12);
+}
+
+/* Archival photo: deckled edge and brass photo corners, like a family album. */
+.deckled {
+  position: relative;
+  padding: 10px;
+  background: #fbf5e8;
+  box-shadow:
+    0 1px 2px rgba(36, 20, 12, 0.15),
+    0 12px 30px -12px rgba(36, 20, 12, 0.35);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M0.6 0.9 L8 0.3 L15 1 L23 0.4 L31 0.9 L40 0.2 L48 0.8 L57 0.3 L65 1 L74 0.4 L82 0.9 L91 0.3 L99.4 0.8 L99.7 9 L99.2 17 L99.8 26 L99.3 35 L99.8 44 L99.2 53 L99.7 62 L99.3 71 L99.8 80 L99.2 89 L99.5 99.3 L91 99.7 L83 99.1 L74 99.7 L66 99.2 L57 99.8 L49 99.2 L40 99.7 L32 99.1 L23 99.7 L15 99.2 L7 99.8 L0.5 99.2 L0.9 91 L0.3 82 L0.8 73 L0.2 64 L0.9 55 L0.3 46 L0.8 37 L0.2 28 L0.9 19 L0.3 10 Z' fill='black'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'><path d='M0.6 0.9 L8 0.3 L15 1 L23 0.4 L31 0.9 L40 0.2 L48 0.8 L57 0.3 L65 1 L74 0.4 L82 0.9 L91 0.3 L99.4 0.8 L99.7 9 L99.2 17 L99.8 26 L99.3 35 L99.8 44 L99.2 53 L99.7 62 L99.3 71 L99.8 80 L99.2 89 L99.5 99.3 L91 99.7 L83 99.1 L74 99.7 L66 99.2 L57 99.8 L49 99.2 L40 99.7 L32 99.1 L23 99.7 L15 99.2 L7 99.8 L0.5 99.2 L0.9 91 L0.3 82 L0.8 73 L0.2 64 L0.9 55 L0.3 46 L0.8 37 L0.2 28 L0.9 19 L0.3 10 Z' fill='black'/></svg>");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.sepia-duotone {
+  filter: sepia(0.85) saturate(1.1) contrast(1.05) brightness(0.95) hue-rotate(-8deg);
+}
+
+/* Brass hairline rule with a centred diamond. */
+.brass-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-brass);
+}
+.brass-rule::before,
+.brass-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Visible, on-brand focus. */
+:focus-visible {
+  outline: 2px solid var(--color-saffron);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-turmeric);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
