@@ -21,3 +21,12 @@ One line per decision, logged as we build. This is expanded into the full brand,
 ## Motion
 - Two eases only: `steam` (slow ease-out, for reveals) and `pour` (weighted in-out, for liquids and the boat). No springs, no snaps.
 - Every sequence has a reduced-motion state that shows its finished frame rather than nothing.
+
+## The Voyage
+- **Scroll is the sea crossing.** A pinned, scrubbed timeline means the visitor's own scrolling sails the boat. The story moves at their pace, not ours.
+- **Ink map, not a satellite map.** Stylised coastlines with a slight SVG displacement wobble and hatched land read as a merchant's chart, not Google Maps.
+- **Dashed route revealed through a drawn mask,** so it keeps its dashes while it draws, like a pencilled sea lane.
+- **Captions sit as a numbered log (I–IV)** that lights up as the boat passes. All text stays in the DOM for screen readers; only the emphasis moves.
+- **The finale zooms into Penang and hands over to a street plan** of Weld Quay → Lebuh Campbell → the tree at 164A: from ocean scale to the street where the kandar was set down.
+- **Under 1024 px the frame stacks** (intro, map, 2×2 log). **Under 768 px it becomes a vertical journey:** a rope line with the boat travelling down the page, then the street plan.
+- **Reduced motion** shows the finished map (route drawn, boat at Penang) and the street plan as a second plate. Nothing is pinned.
