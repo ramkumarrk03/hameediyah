@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "copy:maplibre-worker": "node -e \"const fs=require('fs');fs.mkdirSync('public/vendor/maplibre',{recursive:true});for(const f of ['maplibre-gl-worker.mjs','maplibre-gl-shared.mjs'])fs.copyFileSync('node_modules/maplibre-gl/dist/'+f,'public/vendor/maplibre/'+f)\"",
+    "postinstall": "npm run copy:maplibre-worker"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "framer-motion": "^14.0.0",
     "gsap": "^3.15.0",
+    "maplibre-gl": "^6.12.0",
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8"

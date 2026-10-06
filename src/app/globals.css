@@ -66,7 +66,7 @@ body {
 
 /* Archival photo: deckled edge and brass photo corners, like a family album. */
 .deckled {
-  position: relative;
+  /* No position here: unlayered CSS would override Tailwind's absolute/relative utilities. */
   padding: 10px;
   background: #fbf5e8;
   box-shadow:
@@ -120,4 +120,292 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* Marquee */
+.marquee-track {
+  animation: marquee 48s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Scroll reveal (see components/Reveal.tsx) */
+.reveal {
+  transition:
+    opacity 1.1s var(--ease-steam) var(--reveal-delay, 0s),
+    transform 1.1s var(--ease-steam) var(--reveal-delay, 0s);
+}
+.js .reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+/* Hero entrance: pure CSS, so it never waits for hydration. */
+.rise {
+  animation: rise 1.2s var(--ease-steam) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal:not(.is-in) {
+    opacity: 1;
+    transform: none;
+  }
+  .rise {
+    animation: none;
+  }
+}
+
+/* Kuah slider: a brass rail with a ladle-bowl thumb */
+.kuah-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2.75rem;
+  background: transparent;
+  cursor: pointer;
+}
+.kuah-range::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f5ecd9, #e0a526 40%, #c2581a 75%, #8e3a10);
+  box-shadow: inset 0 0 0 1px rgba(36, 20, 12, 0.25);
+}
+.kuah-range::-moz-range-track {
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f5ecd9, #e0a526 40%, #c2581a 75%, #8e3a10);
+}
+.kuah-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -13px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #f3d58a, #b08d57 60%, #7a5420);
+  border: 2px solid #24140c;
+  box-shadow: 0 6px 14px -4px rgba(36, 20, 12, 0.6);
+}
+.kuah-range::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #f3d58a, #b08d57 60%, #7a5420);
+  border: 2px solid #24140c;
+}
+.kuah-range:focus-visible {
+  outline: 2px solid var(--color-saffron);
+  outline-offset: 4px;
+}
+
+/* Voyage map markers (MapLibre HTML markers) */
+/* MapLibre writes its own inline opacity on marker roots, so visibility lives on the child. */
+.voyage-mk > * {
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-steam), transform 0.7s var(--ease-steam);
+}
+.voyage-mk.is-on > * {
+  opacity: 1;
+}
+.voyage-boat {
+  filter: drop-shadow(0 4px 6px rgba(36, 20, 12, 0.25));
+}
+.voyage-boat svg {
+  animation: boat-rock 2.6s ease-in-out infinite alternate;
+  transform-origin: 50% 90%;
+}
+@keyframes boat-rock {
+  from { transform: rotate(-4deg); }
+  to { transform: rotate(4deg); }
+}
+.voyage-label {
+  pointer-events: none;
+  white-space: nowrap;
+  text-shadow: 0 0 6px #f5ecd9, 0 0 2px #f5ecd9;
+}
+.voyage-label--sea {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  letter-spacing: 0.18em;
+  color: #3f5a4c;
+}
+.voyage-label--land {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-cinnamon);
+}
+.voyage-label--place {
+  font-family: var(--font-sign);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-saffron-deep);
+}
+.voyage-shop {
+  width: 1px;
+  height: 1px;
+}
+.voyage-shop__inner {
+  position: absolute;
+  inset: 0;
+  transform: translateY(12px);
+}
+.voyage-shop.is-on .voyage-shop__inner {
+  transform: none;
+}
+.voyage-shop__pin {
+  position: absolute;
+  left: -9px;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--color-saffron);
+  border: 2px solid var(--color-ink);
+}
+.voyage-shop__pulse {
+  position: absolute;
+  left: -22px;
+  bottom: -14px;
+  width: 44px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(217, 100, 30, 0.35);
+  animation: shop-pulse 2.4s ease-out infinite;
+}
+@keyframes shop-pulse {
+  from { transform: scale(0.4); opacity: 0.9; }
+  to { transform: scale(1.6); opacity: 0; }
+}
+.voyage-shop__card {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--color-cinnamon);
+  color: var(--color-paper);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--color-turmeric);
+  box-shadow: 0 12px 24px -10px rgba(36, 20, 12, 0.7);
+  text-align: center;
+}
+.voyage-shop__card b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+.voyage-shop__card em {
+  display: block;
+  font-family: var(--font-sign);
+  font-style: normal;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-turmeric);
+}
+@media (prefers-reduced-motion: reduce) {
+  .voyage-boat svg,
+  .voyage-shop__pulse {
+    animation: none;
+  }
+}
+
+/* ---------- Hero street scene (components/StreetScene.tsx) ---------- */
+.st-strip {
+  display: flex;
+  width: max-content;
+  /* reverse: the street slides to the right, so the seller reads as walking left */
+  animation: st-pan var(--dur) linear infinite reverse;
+  will-change: transform;
+}
+@keyframes st-pan {
+  to { transform: translateX(-50%); }
+}
+.st-road {
+  /* Five-foot-way kerb, then the street running towards the viewer */
+  background:
+    linear-gradient(#8a6a3a 0 4px, #d8bb8a 4px 18%, #8a6a3a 18% calc(18% + 2px), transparent calc(18% + 2px)),
+    repeating-linear-gradient(90deg, rgba(36, 20, 12, 0.07) 0 2px, transparent 2px 46px),
+    linear-gradient(#d2b27f, #b48a56);
+  animation: st-road 7s linear infinite reverse;
+}
+@keyframes st-road {
+  to { background-position: 0 0, -460px 0, 0 0; }
+}
+.st-walker {
+  transform: translateX(var(--rest));
+  animation: st-cross var(--dur) linear var(--delay) infinite;
+  will-change: transform;
+}
+@keyframes st-cross {
+  from { transform: translateX(-30vw); }
+  to { transform: translateX(108vw); }
+}
+/* Walk cycle */
+.st-leg,
+.st-arm,
+.st-pot {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+}
+.st-leg { animation: st-leg var(--step, 1s) ease-in-out infinite alternate; }
+.st-leg-b { animation-delay: calc(var(--step, 1s) * -1); }
+@keyframes st-leg {
+  from { transform: rotate(21deg); }
+  to { transform: rotate(-21deg); }
+}
+.st-arm { animation: st-arm var(--step, 1s) ease-in-out infinite alternate; }
+.st-arm-a { animation-delay: calc(var(--step, 1s) * -1); }
+@keyframes st-arm {
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(16deg); }
+}
+.st-bob { animation: st-bob calc(var(--step, 1s) / 2) ease-in-out infinite alternate; }
+@keyframes st-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}
+.st-pot { animation: st-pot calc(var(--step, 1s) * 2) ease-in-out infinite alternate; }
+@keyframes st-pot {
+  from { transform: rotate(5deg); }
+  to { transform: rotate(-5deg); }
+}
+.st-steam { animation: st-steam 3s ease-out infinite; opacity: 0; }
+@keyframes st-steam {
+  0% { opacity: 0; transform: translateY(8px); }
+  30% { opacity: 0.85; }
+  100% { opacity: 0; transform: translateY(-36px); }
+}
+.st-cloud { animation: st-cloud var(--dur) linear var(--delay) infinite; }
+@keyframes st-cloud {
+  from { transform: translateX(-30vw); }
+  to { transform: translateX(110vw); }
+}
+.street[data-paused="true"] *,
+.hero-sky[data-paused="true"] * {
+  animation-play-state: paused !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-strip, .st-road, .st-walker, .st-leg, .st-arm, .st-bob, .st-pot, .st-cloud { animation: none !important; }
+  .st-steam { animation: none !important; opacity: 0.6; }
 }
