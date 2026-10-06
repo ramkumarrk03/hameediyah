@@ -135,21 +135,27 @@ export default function Voyage() {
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "failed">("idle");
   const [atStart, setAtStart] = useState(true);
 
-  // Load the map only when the section comes near (scroll check, so it works even where
-  // IntersectionObserver is throttled, e.g. background tabs and embedded previews).
+  // Load the map (library + tiles, several MB on a phone) only once the reader has actually
+  // scrolled toward it, never during the first page load, so the hero paints and responds fast.
+  // A scroll check rather than IntersectionObserver, which is throttled in background tabs.
   useEffect(() => {
     const el = section.current;
     if (!el) return;
     const check = () => {
+      if (window.scrollY < 40) return; // still on the hero: not yet
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight * 2.2 && r.bottom > -window.innerHeight) {
+      if (r.top < window.innerHeight * 1.5 && r.bottom > -window.innerHeight) {
         setStatus((s) => (s === "idle" ? "loading" : s));
         window.removeEventListener("scroll", check);
       }
     };
-    check();
+    // A reload part-way down the page (restored scroll position) loads straight away.
+    const first = requestAnimationFrame(check);
     window.addEventListener("scroll", check, { passive: true });
-    return () => window.removeEventListener("scroll", check);
+    return () => {
+      cancelAnimationFrame(first);
+      window.removeEventListener("scroll", check);
+    };
   }, []);
 
   useEffect(() => {
@@ -362,8 +368,14 @@ export default function Voyage() {
     >
       <div className="sticky top-0 h-svh overflow-hidden motion-reduce:relative motion-reduce:h-[88svh]">
         {/* The real map */}
-        <div className="absolute inset-0 bg-[#F1E4C8]" aria-hidden>
-          <div ref={mapBox} className="h-full w-full" />
+        {/* Not aria-hidden: the map's attribution links inside must stay reachable. */}
+        <div className="absolute inset-0 bg-[#F1E4C8]">
+          <div
+            ref={mapBox}
+            className="h-full w-full"
+            role="img"
+            aria-label="Map of the voyage from the Coromandel coast of Tamil Nadu across the Bay of Bengal to Penang, ending on Lebuh Campbell at Hameediyah, 164A."
+          />
         </div>
 
         {/* Paper grain and a soft vignette keep the map feeling printed, not digital */}

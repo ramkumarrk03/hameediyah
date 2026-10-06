@@ -5,7 +5,9 @@ import "./globals.css";
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
+  // SOFT + WONK give the hand-painted signboard feel; the opsz axis was dropped to keep the
+  // headline font light, since it is the first thing a phone has to download.
+  axes: ["SOFT", "WONK"],
   display: "swap",
 });
 
@@ -20,6 +22,7 @@ const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
   display: "swap",
+  preload: false, // small signage labels only; not worth competing with the headline font
 });
 
 const tamil = Noto_Serif_Tamil({
@@ -27,6 +30,7 @@ const tamil = Noto_Serif_Tamil({
   subsets: ["tamil"],
   weight: ["400", "600"],
   display: "swap",
+  preload: false, // single decorative words
 });
 
 export const metadata: Metadata = {

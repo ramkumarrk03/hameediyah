@@ -156,9 +156,11 @@ body {
   animation: rise 1.2s var(--ease-steam) both;
   animation-delay: var(--d, 0s);
 }
+/* Starts slightly faded rather than invisible: fully transparent text is ignored for
+   Largest Contentful Paint, which would leave the page measured as late. */
 @keyframes rise {
   from {
-    opacity: 0;
+    opacity: 0.12;
     transform: translateY(22px);
   }
 }
