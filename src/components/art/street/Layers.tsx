@@ -2,7 +2,7 @@
  * Seamless, horizontally tiling layers for the hero street. Each tile starts and
  * ends at the same height, so two copies side by side loop without a seam.
  */
-const INK = "#24140C";
+const INK = "#14130F";
 
 /** Far: a pale skyline of roofs, a mosque dome, palms and harbour masts. */
 export function FarSkyline({ style }: { style?: React.CSSProperties }) {
@@ -48,14 +48,14 @@ type Facade = { wall: string; shutter: string; sign: string; signText: string; i
 
 const FACADES: Facade[] = [
   { wall: "#F1E3C6", shutter: "#5F7F6A", sign: "#6B3A1E", signText: "KEDAI KOPI" },
-  { wall: "#9DB59A", shutter: "#F1E3C6", sign: "#24140C", signText: "TAILOR" },
+  { wall: "#9DB59A", shutter: "#F1E3C6", sign: "#14130F", signText: "TAILOR" },
   { wall: "#E7B8A2", shutter: "#6B3A1E", sign: "#3F5A2C", signText: "SPICES" },
-  { wall: "#F2C230", shutter: "#3E7D4F", sign: "#F2C230", signText: "HAMEEDIYAH · 164A", ink: "#24140C" },
+  { wall: "#FFDE16", shutter: "#0B9444", sign: "#0B9444", signText: "HAMEEDIYAH · 164-A", ink: "#FFDE16" },
   { wall: "#C9D6D0", shutter: "#8A5A32", sign: "#B3311C", signText: "TEXTILES" },
-  { wall: "#F3D9A4", shutter: "#5F7F6A", sign: "#24140C", signText: "SUNDRIES" },
-  { wall: "#E9C46A", shutter: "#6B3A1E", sign: "#3F5A2C", signText: "PRINTER" },
+  { wall: "#F3D9A4", shutter: "#5F7F6A", sign: "#14130F", signText: "SUNDRIES" },
+  { wall: "#E8D9BE", shutter: "#6B3A1E", sign: "#3F5A2C", signText: "PRINTER" },
   { wall: "#F1E3C6", shutter: "#B3311C", sign: "#6B3A1E", signText: "JEWELLER" },
-  { wall: "#B9C9A8", shutter: "#F1E3C6", sign: "#24140C", signText: "BOOKS" },
+  { wall: "#B9C9A8", shutter: "#F1E3C6", sign: "#14130F", signText: "BOOKS" },
   { wall: "#EBC9B0", shutter: "#3E7D4F", sign: "#8A5A32", signText: "HARDWARE" },
 ];
 
@@ -84,10 +84,10 @@ function FacadeBlock({ f, x }: { f: Facade; x: number }) {
         x={w / 2}
         y="261"
         textAnchor="middle"
-        fontFamily="var(--font-oswald), sans-serif"
+        fontFamily="var(--font-condensed), sans-serif"
         fontSize={f.signText.length > 12 ? 15 : 17}
         letterSpacing="3"
-        fill={f.ink ?? "#F5ECD9"}
+        fill={f.ink ?? "#FFFBEC"}
       >
         {f.signText}
       </text>

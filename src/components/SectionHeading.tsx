@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 
 export default function SectionHeading({
   kicker,
-  tamil,
   title,
   intro,
   align = "left",
@@ -11,7 +10,6 @@ export default function SectionHeading({
   id,
 }: {
   kicker: string;
-  tamil?: string;
   title: ReactNode;
   intro?: ReactNode;
   align?: "left" | "center";
@@ -20,22 +18,14 @@ export default function SectionHeading({
 }) {
   return (
     <header className={cn(align === "center" && "mx-auto text-center", "max-w-2xl")}>
-      <p className={cn("font-sign text-xs uppercase tracking-[0.3em]", dark ? "text-turmeric" : "text-saffron-deep")}>
+      <p className={cn("font-sign text-xs font-semibold uppercase tracking-[0.3em]", dark ? "text-yellow" : "text-green-deep")}>
         {kicker}
-        {tamil && (
-          <>
-            {" · "}
-            <span lang="ta" className="font-tamil normal-case tracking-normal">
-              {tamil}
-            </span>
-          </>
-        )}
       </p>
       <h2
         id={id}
         className={cn(
-          "font-display mt-3 text-4xl leading-[1.04] text-balance sm:text-5xl lg:text-6xl",
-          dark ? "text-paper" : "text-cinnamon",
+          "font-display sign-caps mt-3 text-[2.75rem] text-balance sm:text-6xl lg:text-7xl",
+          dark ? "text-paper" : "text-ink",
         )}
       >
         {title}

@@ -80,13 +80,13 @@ export default function Plate({ rice, picked, gravy }: { rice: Rice | null; pick
     prev.current = gravy;
   }, [gravy, reduce]);
 
-  const summary = [
-    rice ? rice.name : "an empty plate",
-    picked.length ? `with ${picked.map((p) => p.name).join(", ")}` : "",
-    gravy ? `and a ${["", "light", "usual", "generous", "flooding"][gravy]} pour of kuah` : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const names = picked.map((p) => p.name);
+  const dishes = names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
+  const pour = ["", "light", "usual", "generous", "flooding"][gravy];
+  const summary =
+    (rice ? rice.name.toLowerCase() : "an empty plate") +
+    (dishes ? ` with ${dishes}` : "") +
+    (gravy ? `${dishes ? "," : ""} and a ${pour} pour of kuah` : "");
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[34rem]" role="img" aria-label={`Your plate: ${summary}.`}>
@@ -107,12 +107,12 @@ export default function Plate({ rice, picked, gravy }: { rice: Rice | null; pick
             <stop offset="1" stopColor="#D79A3A" />
           </radialGradient>
         </defs>
-        <ellipse cx="6" cy="16" rx="196" ry="192" fill="#24140C" opacity="0.18" style={{ filter: "blur(10px)" }} />
-        <circle r="192" fill="url(#enamel)" stroke="#24140C" strokeWidth="2" />
-        <circle r="192" fill="none" stroke="#2F4F6F" strokeWidth="9" />
-        <circle r="160" fill="none" stroke="#24140C" strokeWidth="0.7" opacity="0.18" />
+        <ellipse cx="6" cy="16" rx="196" ry="192" fill="#14130F" opacity="0.18" style={{ filter: "blur(10px)" }} />
+        <circle r="192" fill="url(#enamel)" stroke="#14130F" strokeWidth="2" />
+        <circle r="192" fill="none" stroke="#0B9444" strokeWidth="9" />
+        <circle r="160" fill="none" stroke="#14130F" strokeWidth="0.7" opacity="0.18" />
         {/* Enamel chips, an old well-used plate */}
-        <path d="M150,-118 q6,2 4,8 q-6,-1 -4,-8 Z M-170,60 q5,4 1,8 q-5,-3 -1,-8 Z" fill="#24140C" opacity="0.5" />
+        <path d="M150,-118 q6,2 4,8 q-6,-1 -4,-8 Z M-170,60 q5,4 1,8 q-5,-3 -1,-8 Z" fill="#14130F" opacity="0.5" />
 
         {/* Kuah campur: pools that spread, never snap */}
         <clipPath id="plate-well">
@@ -144,7 +144,7 @@ export default function Plate({ rice, picked, gravy }: { rice: Rice | null; pick
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.9, ease: EASE_STEAM }}
             >
-              <path d={RICE} transform="translate(5 9)" fill="#24140C" opacity="0.14" style={{ filter: "blur(6px)" }} />
+              <path d={RICE} transform="translate(5 9)" fill="#14130F" opacity="0.14" style={{ filter: "blur(6px)" }} />
               <path d={RICE} fill={rice.id === "biryani" ? "url(#biryani)" : "#FFFDF7"} stroke="#B3A68C" strokeWidth="2.5" />
               {GRAINS.map((g, i) => (
                 <ellipse
@@ -185,7 +185,7 @@ export default function Plate({ rice, picked, gravy }: { rice: Rice | null; pick
                 transition={{ duration: 0.6, ease: EASE_POUR }}
               />
               <motion.g initial={{ rotate: -10, y: -6 }} animate={{ rotate: 18, y: 0 }} transition={{ duration: 0.8, ease: EASE_POUR }}>
-                <path d="M-70,-276 Q-20,-250 18,-270 L10,-290 Q-20,-276 -62,-296 Z" fill="#B08D57" stroke="#24140C" strokeWidth="2" />
+                <path d="M-70,-276 Q-20,-250 18,-270 L10,-290 Q-20,-276 -62,-296 Z" fill="#B08D57" stroke="#14130F" strokeWidth="2" />
                 <path d="M-62,-290 L-150,-330" stroke="#6B3A1E" strokeWidth="7" strokeLinecap="round" />
               </motion.g>
             </motion.g>
@@ -216,7 +216,7 @@ export default function Plate({ rice, picked, gravy }: { rice: Rice | null; pick
       </AnimatePresence>
 
       {!rice && (
-        <p className="pointer-events-none absolute inset-0 grid place-items-center px-16 text-center font-display text-2xl italic text-cinnamon/60">
+        <p className="pointer-events-none absolute inset-0 grid place-items-center px-16 text-center font-body text-xl italic text-ink/60">
           An empty plate, waiting for rice
         </p>
       )}

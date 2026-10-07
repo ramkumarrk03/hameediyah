@@ -15,7 +15,7 @@ import {
   STOP_PROGRESS,
   WALK,
   WALK_WINDOW,
-  WELD_QUAY,
+  GEORGE_TOWN_SHORE,
   alongLine,
   stopAt,
   type Camera,
@@ -47,19 +47,19 @@ function heritageStyle(style: StyleSpecification): StyleSpecification {
   for (const l of style.layers) {
     const id = l.id;
     const paint = (l.paint ?? {}) as Record<string, unknown>;
-    if (l.type === "background") paint["background-color"] = "#F1E4C8";
-    else if (id === "water") paint["fill-color"] = "#C6D2C8";
-    else if (id === "waterway") paint["line-color"] = "#B5C4B9";
+    if (l.type === "background") paint["background-color"] = "#FFF6D2";
+    else if (id === "water") paint["fill-color"] = "#CFE4D2";
+    else if (id === "waterway") paint["line-color"] = "#A9CDB2";
     else if (id === "building") {
-      paint["fill-color"] = "#E3CDA6";
-      paint["fill-outline-color"] = "#C4A574";
-    } else if (l.type === "fill") paint["fill-color"] = "#EADCBC";
+      paint["fill-color"] = "#FFE88A";
+      paint["fill-outline-color"] = "#D9BC2A";
+    } else if (l.type === "fill") paint["fill-color"] = "#FFF0B8";
     else if (l.type === "line" && id.startsWith("boundary")) {
-      paint["line-color"] = "#B08D57";
+      paint["line-color"] = "#0B9444";
       paint["line-opacity"] = 0.6;
     } else if (l.type === "line" && /rail|aeroway/.test(id)) l.layout = { ...(l.layout ?? {}), visibility: "none" };
-    else if (l.type === "line" && id.includes("casing")) paint["line-color"] = "#D2B98C";
-    else if (l.type === "line") paint["line-color"] = "#FBF3E2";
+    else if (l.type === "line" && id.includes("casing")) paint["line-color"] = "#E5CF6A";
+    else if (l.type === "line") paint["line-color"] = "#FFFDF5";
     else if (l.type === "symbol") {
       if (/shield|airport|^water_name|label_country_3|label_state/.test(id)) l.layout = { ...(l.layout ?? {}), visibility: "none" };
       else if (l.layout && "text-field" in l.layout)
@@ -67,8 +67,8 @@ function heritageStyle(style: StyleSpecification): StyleSpecification {
           ...l.layout,
           "text-field": ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name:latin"], ["get", "name"]],
         } as never;
-      paint["text-color"] = id.startsWith("water") ? "#4F6B5E" : "#6B3A1E";
-      paint["text-halo-color"] = "#F5ECD9";
+      paint["text-color"] = id.startsWith("water") ? "#2F6B56" : "#14130F";
+      paint["text-halo-color"] = "#FFFBEC";
       paint["text-halo-width"] = 1.4;
     }
     l.paint = paint as never;
@@ -80,11 +80,11 @@ function boatEl() {
   const el = document.createElement("div");
   el.className = "voyage-mk voyage-boat";
   el.innerHTML = `<svg viewBox="-22 -38 44 46" width="46" height="48" aria-hidden="true">
-    <ellipse cx="0" cy="4" rx="20" ry="4" fill="#24140C" opacity=".18"/>
-    <path d="M-14,-2 C-8,6 8,6 16,-3 Z" fill="#6B3A1E" stroke="#24140C" stroke-width="1.4" stroke-linejoin="round"/>
-    <path d="M1,-3 L1,-32" stroke="#24140C" stroke-width="1.4"/>
-    <path d="M2,-31 C14,-24 17,-14 15,-5 L2,-5 Z" fill="#D9641E" stroke="#24140C" stroke-width="1.2" stroke-linejoin="round"/>
-    <path d="M0,-28 C-7,-20 -9,-12 -8,-5 L0,-5 Z" fill="#E0A526" stroke="#24140C" stroke-width="1.1" stroke-linejoin="round"/>
+    <ellipse cx="0" cy="4" rx="20" ry="4" fill="#14130F" opacity=".18"/>
+    <path d="M-14,-2 C-8,6 8,6 16,-3 Z" fill="#14130F" stroke="#14130F" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M1,-3 L1,-32" stroke="#14130F" stroke-width="1.4"/>
+    <path d="M2,-31 C14,-24 17,-14 15,-5 L2,-5 Z" fill="#0B9444" stroke="#14130F" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M0,-28 C-7,-20 -9,-12 -8,-5 L0,-5 Z" fill="#FFDE16" stroke="#14130F" stroke-width="1.1" stroke-linejoin="round"/>
   </svg>`;
   return el;
 }
@@ -102,7 +102,7 @@ function shopEl() {
   const el = document.createElement("div");
   el.className = "voyage-mk voyage-shop";
   el.innerHTML = `<span class="voyage-shop__inner"><span class="voyage-shop__pulse"></span><span class="voyage-shop__pin"></span>
-    <span class="voyage-shop__card"><b>Hameediyah</b><em>164A Lebuh Campbell · since 1907</em></span></span>`;
+    <span class="voyage-shop__card"><b>Hameediyah</b><em>164-A Lebuh Campbell · since 1907</em></span></span>`;
   return el;
 }
 
@@ -191,21 +191,21 @@ export default function Voyage() {
             id: "route-all",
             type: "line",
             source: "route-all",
-            paint: { "line-color": "#6B3A1E", "line-opacity": 0.35, "line-width": 1.4, "line-dasharray": [1, 3] },
+            paint: { "line-color": "#14130F", "line-opacity": 0.3, "line-width": 1.4, "line-dasharray": [1, 3] },
             layout: { "line-cap": "round" },
           });
           m.addLayer({
             id: "route-done",
             type: "line",
             source: "route-done",
-            paint: { "line-color": "#D9641E", "line-width": 3.4, "line-dasharray": [2.2, 1.6] },
+            paint: { "line-color": "#0B9444", "line-width": 3.4, "line-dasharray": [2.2, 1.6] },
             layout: { "line-cap": "round" },
           });
           m.addLayer({
             id: "walk",
             type: "line",
             source: "walk",
-            paint: { "line-color": "#D9641E", "line-width": 5, "line-dasharray": [0.2, 1.8] },
+            paint: { "line-color": "#0B9444", "line-width": 5, "line-dasharray": [0.2, 1.8] },
             layout: { "line-cap": "round", "line-join": "round" },
           });
 
@@ -214,12 +214,12 @@ export default function Voyage() {
             .addTo(m);
           markers.current.shop = new maplibregl.Marker({ element: shopEl(), anchor: "bottom" }).setLngLat(HAMEEDIYAH).addTo(m);
           const labels: Array<[string, LngLat, "sea" | "land" | "place"]> = [
-            ["Coromandel Coast", [78.7, 12.4], "land"],
+            ["Kerala", [76.6, 10.6], "land"],
             ["Bay of Bengal", [86.5, 13.6], "sea"],
             ["Andaman Sea", [96.0, 10.6], "sea"],
             ["Strait of Malacca", [99.4, 4.7], "sea"],
             ["Penang", [100.25, 5.55], "place"],
-            ["Weld Quay", WELD_QUAY, "place"],
+            ["George Town", GEORGE_TOWN_SHORE, "place"],
           ];
           markers.current.labels = labels.map(([t, ll, k]) =>
             new maplibregl.Marker({ element: labelEl(t, k), anchor: "center" }).setLngLat(ll).addTo(m),
@@ -279,7 +279,7 @@ export default function Voyage() {
       boat.setLngLat(sea.point);
       boat.getElement().classList.toggle("is-on", p < 0.7);
       markers.current.shop!.getElement().classList.toggle("is-on", p > 0.84);
-      // Ocean labels while at sea; "Penang" on approach; "Weld Quay" at landfall.
+      // Ocean labels while at sea; "Penang" on approach; "George Town" at landfall.
       const show = [p < 0.6, p < 0.6, p < 0.6, p < 0.6, p > 0.5 && p < 0.7, p > 0.68 && p < 0.86];
       markers.current.labels.forEach((mk, i) => mk.getElement().classList.toggle("is-on", show[i]));
 
@@ -369,12 +369,12 @@ export default function Voyage() {
       <div className="sticky top-0 h-svh overflow-hidden motion-reduce:relative motion-reduce:h-[88svh]">
         {/* The real map */}
         {/* Not aria-hidden: the map's attribution links inside must stay reachable. */}
-        <div className="absolute inset-0 bg-[#F1E4C8]">
+        <div className="absolute inset-0 bg-[#FFF6D2]">
           <div
             ref={mapBox}
             className="h-full w-full"
             role="img"
-            aria-label="Map of the voyage from the Coromandel coast of Tamil Nadu across the Bay of Bengal to Penang, ending on Lebuh Campbell at Hameediyah, 164A."
+            aria-label="Map of the family's journey from Kerala, India, across the Bay of Bengal to Penang, ending at Hameediyah, 164-A Campbell Street. The sea route is illustrative."
           />
         </div>
 
@@ -382,11 +382,11 @@ export default function Voyage() {
         <div aria-hidden className="paper pointer-events-none absolute inset-0 opacity-40 mix-blend-multiply" />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(241,228,200,0.95)]"
+          className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(255,246,210,0.95)]"
         />
 
         {status !== "ready" && (
-          <p className="absolute inset-0 grid place-items-center font-display text-2xl italic text-cinnamon/70">
+          <p className="absolute inset-0 grid place-items-center font-display text-2xl uppercase text-ink/70">
             {status === "failed" ? "The chart could not be unrolled. The story continues below." : "Unrolling the chart…"}
           </p>
         )}
@@ -394,12 +394,13 @@ export default function Voyage() {
         {/* Chapter heading */}
         <header className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-paper via-paper/80 to-transparent px-4 pb-24 pt-20 sm:px-8 sm:pt-28">
           <div className="mx-auto max-w-7xl">
-            <p className="font-sign text-xs uppercase tracking-[0.3em] text-saffron-deep">
-              Chapter I · <span lang="ta" className="font-tamil normal-case tracking-normal">பயணம்</span> · The Voyage
+            <p className="font-sign text-xs font-semibold uppercase tracking-[0.3em] text-green-deep">
+              Chapter I · The Voyage
             </p>
-            <h2 id="voyage-title" className="font-display mt-2 max-w-xl text-4xl leading-[1.02] text-cinnamon sm:text-6xl">
-              A spice merchant sails east
+            <h2 id="voyage-title" className="font-display sign-caps mt-2 max-w-xl text-[2.75rem] text-ink sm:text-7xl">
+              From Kerala to Penang
             </h2>
+            <p className="mt-3 font-sign text-xs uppercase tracking-[0.2em] text-ink/70">The sea route is drawn for illustration</p>
           </div>
         </header>
 
@@ -407,7 +408,7 @@ export default function Voyage() {
         <div className="absolute inset-x-4 bottom-14 sm:inset-x-8 sm:bottom-10">
           <div className="mx-auto flex max-w-7xl items-end justify-between gap-6">
             <div
-              className="w-full max-w-md border border-brass/70 bg-paper/95 p-5 shadow-[0_24px_50px_-24px_rgba(36,20,12,0.7)] backdrop-blur-sm sm:p-6"
+              className="w-full max-w-md border-2 border-green bg-paper/95 p-5 shadow-[0_24px_50px_-24px_rgba(20,19,15,0.7)] backdrop-blur-sm sm:p-6"
               aria-live="polite"
             >
               <AnimatePresence mode="wait">
@@ -418,16 +419,16 @@ export default function Voyage() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.55, ease: EASE_STEAM }}
                 >
-                  <p className="font-sign text-xs uppercase tracking-[0.22em] text-saffron-deep">
+                  <p className="font-sign text-xs uppercase tracking-[0.22em] text-green-deep">
                     {NUMERALS[stop]} · {s.label} · {s.place}
                   </p>
-                  <p className="font-display mt-2 text-xl leading-snug text-ink sm:text-2xl">{s.line}</p>
+                  <p className="mt-2 text-lg leading-snug text-ink sm:text-xl">{s.line}</p>
                   {stop === 3 && (
                     <Link
                       href="/#visit"
-                      className="mt-4 inline-flex min-h-11 items-center gap-2 font-sign text-xs uppercase tracking-[0.22em] text-cinnamon underline decoration-brass underline-offset-4 hover:text-saffron-deep"
+                      className="mt-4 inline-flex min-h-11 items-center gap-2 font-sign text-xs uppercase tracking-[0.22em] text-ink underline decoration-green underline-offset-4 hover:text-green-deep"
                     >
-                      The same address today <span aria-hidden>→</span>
+                      Find 164-A today <span aria-hidden>→</span>
                     </Link>
                   )}
                 </motion.div>
@@ -443,13 +444,13 @@ export default function Voyage() {
                       aria-current={stop === i ? "step" : undefined}
                       aria-label={`Stop ${NUMERALS[i]}: ${v.place}`}
                       className={`grid size-10 shrink-0 place-items-center rounded-full border font-sign text-xs transition-colors duration-500 ${
-                        i <= stop ? "border-saffron bg-saffron text-paper" : "border-cinnamon/40 bg-paper text-cinnamon"
+                        i <= stop ? "border-2 border-green bg-yellow font-semibold text-ink" : "border-ink/40 bg-paper text-ink"
                       }`}
                     >
                       {NUMERALS[i]}
                     </button>
                     {i < voyage.length - 1 && (
-                      <span aria-hidden className={`h-px flex-1 ${i < stop ? "bg-saffron" : "bg-cinnamon/25"}`} />
+                      <span aria-hidden className={`h-px flex-1 ${i < stop ? "bg-green" : "bg-ink/25"}`} />
                     )}
                   </li>
                 ))}
@@ -458,7 +459,7 @@ export default function Voyage() {
 
             <p
               aria-hidden
-              className={`hidden items-center gap-2 font-sign text-xs uppercase tracking-[0.25em] text-cinnamon transition-opacity duration-700 motion-reduce:hidden sm:flex ${
+              className={`hidden items-center gap-2 font-sign text-xs uppercase tracking-[0.25em] text-ink transition-opacity duration-700 motion-reduce:hidden sm:flex ${
                 atStart ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -472,10 +473,10 @@ export default function Voyage() {
       <ol className="mx-auto hidden max-w-3xl space-y-6 px-4 py-16 motion-reduce:block">
         {voyage.map((v, i) => (
           <li key={v.id}>
-            <p className="font-sign text-xs uppercase tracking-[0.22em] text-saffron-deep">
+            <p className="font-sign text-xs uppercase tracking-[0.22em] text-green-deep">
               {NUMERALS[i]} · {v.label} · {v.place}
             </p>
-            <p className="font-display mt-1 text-xl">{v.line}</p>
+            <p className="mt-1 text-xl">{v.line}</p>
           </li>
         ))}
       </ol>

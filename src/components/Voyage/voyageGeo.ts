@@ -1,25 +1,29 @@
 /**
  * Real-world geometry for The Voyage (lng, lat).
- * The sea route is illustrative: the Coromandel coast, across the Bay of Bengal,
- * through the Ten Degree Channel between the Andamans and Nicobars, round the
- * northern tip of Sumatra and down the Strait of Malacca into Penang's harbour.
+ * The family came from Kerala (client company profile). The documents do not record the route,
+ * so the sea path is illustrative: down the Kerala coast, round Cape Comorin and the south of
+ * Sri Lanka, across the Bay of Bengal below the Nicobars, past the tip of Sumatra and into Penang.
  */
 export type LngLat = [number, number];
 
 export const HAMEEDIYAH: LngLat = [100.33265, 5.41855]; // 164A Lebuh Campbell (OpenStreetMap)
-export const WELD_QUAY: LngLat = [100.3428, 5.4158];
+export const GEORGE_TOWN_SHORE: LngLat = [100.3428, 5.4158]; // the George Town waterfront
 
 const SEA_WAYPOINTS: LngLat[] = [
-  [80.02, 10.85],
-  [81.6, 10.62],
-  [84.6, 10.35],
-  [88.2, 10.12],
-  [91.4, 10.02],
-  [92.85, 9.98],
-  [94.5, 8.85],
-  [96.25, 6.85],
-  [98.1, 6.12],
-  [99.5, 5.88],
+  [76.12, 9.95],
+  [75.95, 9.0],
+  [76.75, 7.95],
+  [77.9, 7.5],
+  [79.6, 6.3],
+  [80.9, 5.55],
+  [83.8, 5.6],
+  [87.6, 5.95],
+  [91.2, 6.2],
+  [93.7, 6.25],
+  [95.6, 6.35],
+  [97.4, 6.2],
+  [99.0, 5.95],
+  [99.9, 5.7],
   [100.2, 5.62],
   [100.37, 5.5],
   [100.355, 5.44],
@@ -49,9 +53,9 @@ function densify(points: LngLat[], perSegment = 36): LngLat[] {
 
 export const SEA_ROUTE = densify(SEA_WAYPOINTS);
 
-/** The kandar's walk: from the quay up to the tree on Lebuh Campbell (illustrative). */
+/** On foot through George Town's streets to 164-A Campbell Street (illustrative). */
 export const WALK: LngLat[] = [
-  WELD_QUAY,
+  GEORGE_TOWN_SHORE,
   [100.3418, 5.4161],
   [100.3386, 5.4166],
   [100.33584, 5.41697],
@@ -96,8 +100,8 @@ export type Camera = { center: LngLat; zoom: number; pitch: number; bearing: num
 
 /** Camera keyframes over scroll progress. Between 0.1 and 0.55 the camera follows the boat. */
 export const KEYFRAMES: Array<{ p: number } & Camera> = [
-  { p: 0, center: [87.5, 11.2], zoom: 3.9, pitch: 0, bearing: 0 },
-  { p: 0.1, center: [80.6, 10.8], zoom: 5.3, pitch: 0, bearing: 0 },
+  { p: 0, center: [86.5, 9.0], zoom: 3.9, pitch: 0, bearing: 0 },
+  { p: 0.1, center: [76.4, 9.6], zoom: 5.3, pitch: 0, bearing: 0 },
   { p: 0.55, center: [100.2, 5.6], zoom: 5.3, pitch: 0, bearing: 0 },
   { p: 0.66, center: [100.33, 5.43], zoom: 10.6, pitch: 10, bearing: 0 },
   { p: 0.76, center: [100.3425, 5.4166], zoom: 14.6, pitch: 38, bearing: -12 },

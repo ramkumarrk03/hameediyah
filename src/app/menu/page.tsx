@@ -10,7 +10,7 @@ import Marquee from "@/components/Marquee";
 export const metadata: Metadata = {
   title: "Build your plate & menu",
   description:
-    "Build a nasi kandar plate the 1907 way: choose your rice, pick your lauk from the counter, and say how much kuah. Then read the full Hameediyah menu.",
+    "Build a Nasi Kandar plate: choose your rice, pick your lauk from the counter, and say how much kuah. Then read the Hameediyah menu.",
 };
 
 export default function MenuPage() {
@@ -21,19 +21,16 @@ export default function MenuPage() {
         <section aria-labelledby="builder-title" className="px-4 pb-24 pt-28 sm:px-8 sm:pt-36">
           <div className="mx-auto max-w-7xl">
             <header className="max-w-3xl">
-              <p className="font-sign text-xs uppercase tracking-[0.3em] text-saffron-deep">
-                The counter at 164A ·{" "}
-                <span lang="ta" className="font-tamil normal-case tracking-normal">
-                  கந்தர்
-                </span>
+              <p className="font-sign text-xs uppercase tracking-[0.3em] text-green-deep">
+                The counter at 164-A
               </p>
-              <h1 id="builder-title" className="font-display mt-3 text-5xl leading-[1] text-cinnamon sm:text-7xl">
+              <h1 id="builder-title" className="font-display sign-caps mt-3 text-6xl text-ink sm:text-8xl">
                 Build your plate
               </h1>
               <p className="mt-5 max-w-xl text-lg text-ink/80">
-                Nasi kandar is ordered at the counter, never from a list. Choose your rice, point at the lauk, and say
-                how much kuah. Here is how it goes.{" "}
-                <Link href="#menu-card" className="text-saffron-deep underline decoration-brass underline-offset-4">
+                Nasi Kandar is ordered at the counter: choose your rice, point at the lauk, and say how much kuah. Try
+                it here with dishes from the Hameediyah menu.{" "}
+                <Link href="#menu-card" className="text-green-deep underline decoration-green underline-offset-4">
                   Or skip to the full menu.
                 </Link>
               </p>

@@ -1,14 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Literata, Oswald, Noto_Serif_Tamil } from "next/font/google";
+import { Big_Shoulders, Literata, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Condensed, straight-sided caps that echo the HAMEEDIYAH wordmark on the logo and signboard.
+const shoulders = Big_Shoulders({
+  variable: "--font-shoulders",
   subsets: ["latin"],
-  // SOFT + WONK give the hand-painted signboard feel; the opsz axis was dropped to keep the
-  // headline font light, since it is the first thing a phone has to download.
-  axes: ["SOFT", "WONK"],
   display: "swap",
+  // next/font has no metrics for this face; Arial Narrow is the closest system width.
+  adjustFontFallback: false,
+  fallback: ["Arial Narrow", "sans-serif"],
 });
 
 const literata = Literata({
@@ -18,20 +19,15 @@ const literata = Literata({
   display: "swap",
 });
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+// The logo's own supporting type ("EST 1907", "Oldest Nasi Kandar in Malaysia") is a condensed grotesque.
+const condensed = Roboto_Condensed({
+  variable: "--font-condensed",
   subsets: ["latin"],
+  style: ["normal", "italic"],
   display: "swap",
   preload: false, // small signage labels only; not worth competing with the headline font
 });
 
-const tamil = Noto_Serif_Tamil({
-  variable: "--font-tamil",
-  subsets: ["tamil"],
-  weight: ["400", "600"],
-  display: "swap",
-  preload: false, // single decorative words
-});
 
 export const metadata: Metadata = {
   title: {
@@ -39,12 +35,12 @@ export const metadata: Metadata = {
     template: "%s · Hameediyah, since 1907",
   },
   description:
-    "Malaysia's oldest nasi kandar restaurant. From a bamboo shoulder pole under a tree on Lebuh Campbell to the shophouse at 164A, one family has served George Town since 1907.",
+    "Malaysia's oldest Nasi Kandar restaurant. Since 1907, one family from Kerala has served Penang, first on foot with a kandar pole, then from the shophouse at 164-A Campbell Street.",
   robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F5ECD9",
+  themeColor: "#FFDE16",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -52,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${literata.variable} ${oswald.variable} ${tamil.variable} antialiased`}
+      className={`${shoulders.variable} ${literata.variable} ${condensed.variable} antialiased`}
     >
       <head>
         {/* Hide reveal blocks only while JS is alive; if the app has not hydrated within 3s, show everything. */}

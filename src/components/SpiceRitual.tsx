@@ -140,7 +140,7 @@ export default function SpiceRitual() {
     <section
       id="spices"
       aria-labelledby="spices-title"
-      className="paper-dark relative overflow-hidden px-4 py-24 transition-colors sm:px-8 sm:py-32"
+      className="paper-dark is-ink relative overflow-hidden px-4 py-24 transition-colors sm:px-8 sm:py-32"
     >
       {/* The room warms as the pan works. */}
       <div
@@ -148,7 +148,7 @@ export default function SpiceRitual() {
         className="pointer-events-none absolute inset-0 transition-opacity duration-[1600ms]"
         style={{
           opacity: 0.25 + warmth * 0.75,
-          background: "radial-gradient(ellipse at 30% 55%, rgba(217,100,30,0.42), rgba(107,58,30,0.35) 45%, transparent 75%)",
+          background: "radial-gradient(ellipse at 30% 55%, rgba(217,100,30,0.42), rgba(20,19,15,0.35) 45%, transparent 75%)",
         }}
       />
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
@@ -175,7 +175,7 @@ export default function SpiceRitual() {
                       aria-label={`${s.name}${done ? ", roasted" : ""}`}
                       className={cn(
                         "relative grid size-20 place-items-center rounded-full transition-transform duration-700 hover:scale-110 sm:size-24",
-                        active.id === s.id && "ring-1 ring-turmeric/70",
+                        active.id === s.id && "ring-1 ring-yellow/70",
                       )}
                     >
                       <svg viewBox="-27 -27 54 54" className="size-full overflow-visible">
@@ -211,10 +211,10 @@ export default function SpiceRitual() {
             </ul>
           </div>
           {/* Phones: the spice card sits right under the pan, where the thumb is */}
-          <div aria-hidden className="mx-auto mt-6 max-w-sm border-l-2 border-turmeric/70 pl-4 lg:hidden">
+          <div aria-hidden className="mx-auto mt-6 max-w-sm border-l-2 border-yellow/70 pl-4 lg:hidden">
             <p className="font-display text-2xl text-paper">
               {active.name}{" "}
-              <span className="font-sign text-xs uppercase tracking-[0.2em] text-turmeric">{active.malay}</span>
+              <span className="font-sign text-xs uppercase tracking-[0.2em] text-yellow">{active.malay}</span>
             </p>
             <p className="mt-1 text-paper/85">{active.role}</p>
           </div>
@@ -232,12 +232,12 @@ export default function SpiceRitual() {
             kicker="Chapter III · The Spice Ritual"
             title={
               <>
-                Before the curry, <em className="text-turmeric">the pan</em>
+                Before the curry, <em className="text-yellow">the pan</em>
               </>
             }
-            intro="The founder came from Tamil Nadu with a mastery of roasted whole spices. In nasi kandar cooking, whole spices are dry-roasted until they darken and smoke, then ground into the pastes behind every gravy."
+            intro="In Nasi Kandar cooking, whole spices are dry-roasted until they darken and smoke, then ground into the pastes behind every gravy. Roast the ones on the pan to meet them."
           />
-          <div aria-live="polite" className="mt-10 border-l-2 border-turmeric/70 pl-6 max-lg:sr-only lg:min-h-48">
+          <div aria-live="polite" className="mt-10 border-l-2 border-yellow/70 pl-6 max-lg:sr-only lg:min-h-48">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.id}
@@ -247,18 +247,14 @@ export default function SpiceRitual() {
                 transition={{ duration: 0.6, ease: EASE_STEAM }}
               >
                 <p className="font-display text-4xl text-paper">{active.name}</p>
-                <p className="mt-1 font-sign text-sm uppercase tracking-[0.2em] text-turmeric">
-                  {active.malay} ·{" "}
-                  <span lang="ta" className="font-tamil normal-case tracking-normal">
-                    {active.tamil}
-                  </span>
-                </p>
+                <p className="mt-1 font-sign text-sm uppercase tracking-[0.2em] text-yellow">{active.malay}</p>
                 <p className="mt-4 max-w-md text-lg text-paper/85">{active.role}</p>
               </motion.div>
             </AnimatePresence>
           </div>
           <p className="mt-8 max-w-md text-sm italic text-paper/65">
-            These spices are typical of nasi kandar cooking. The house blends remain the family&apos;s own.
+            The spices on the pan are typical of Nasi Kandar cooking in general. The house blend is the family&apos;s
+            secret.
           </p>
         </div>
       </div>

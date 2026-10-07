@@ -5,7 +5,7 @@
  */
 import type { CSSProperties } from "react";
 
-const INK = "#24140C";
+const INK = "#14130F";
 const SKIN = "#7A4A2A";
 const SKIN_SHADE = "#5E361D";
 

@@ -22,10 +22,10 @@ const spreads: Array<{
   {
     id: "murtabak",
     name: "Murtabak",
-    local: "Roti, folded & pan-fried",
-    body: "Thin dough is stretched across the griddle, filled, folded into a parcel and fried until crisp at the edges. It is cut into squares and served with curry for dipping. It is the house's most famous dish.",
-    detail: ["Ayam · chicken", "Daging · beef", "Kambing · mutton", "Udang · prawn", "Sayur · vegetable"],
-    detailLabel: "Fillings",
+    local: "Murtabak Hameediyah",
+    body: "A savoury stuffed flatbread, filled with a combination of meat, egg and spices, then grilled to perfection. The family's profile remembers the heady aroma of murtabak sizzling on the age-old grill.",
+    detail: ["Meat", "Egg", "Spices", "Off the grill"],
+    detailLabel: "Inside",
     photo: {
       src: "/images/food/murtabak-plate-ken.webp",
       alt: "A golden murtabak on a banana leaf, a fork lifting one crisp square to show the filling inside.",
@@ -46,9 +46,9 @@ const spreads: Array<{
   {
     id: "ayam-bawang",
     name: "Ayam Bawang",
-    local: "Onion chicken",
-    body: "Fried chicken buried under onions cooked two ways: caramelised soft and fried crisp. Sweet, savoury and crunchy at once. One of the house signatures.",
-    detail: ["Over white rice", "With a pour of kuah campur"],
+    local: "Nasi Kandar Ayam Bawang",
+    body: "Nasi Kandar served with perfectly spiced fried chicken and a rich array of curries. Ayam bawang means “onion chicken”. It is one of the plates on the house's must-try signature menu.",
+    detail: ["Over rice", "With a pour of curries"],
     detailLabel: "Try it",
     photo: {
       src: "/images/food/ayam-bawang.webp",
@@ -63,8 +63,8 @@ const spreads: Array<{
     id: "kari-kepala-ikan",
     name: "Kari Kepala Ikan",
     local: "Fish head curry",
-    body: "A whole fish head simmered in a sharp, tangy curry with okra and curry leaves. A nasi kandar classic, and a fitting one for a shop that began by feeding the dockers of Weld Quay.",
-    detail: ["Share it", "Spoon the gravy over rice"],
+    body: "Fish head curry, made with fresh fish heads in a tangy, spicy gravy and served with steamed rice. It is one of the dishes on the house's must-try menu.",
+    detail: ["Share it", "With steamed rice"],
     detailLabel: "How to have it",
     photo: {
       src: "/images/food/kari-kepala-ikan.webp",
@@ -77,11 +77,11 @@ const spreads: Array<{
   },
   {
     id: "daging-rendang",
-    name: "Daging Rendang Hameediyah",
-    local: "House beef rendang",
-    body: "The rendang that carries the shop's own name: beef cooked slowly in spices and coconut until the gravy darkens and clings to the meat.",
-    detail: ["Beef", "Slow-cooked", "Rich"],
-    detailLabel: "In short",
+    name: "Daging Rendang",
+    local: "Beef rendang",
+    body: "Beef slow-cooked in coconut milk and spices until perfectly tender. In the 1960s and ’70s, Hameediyah helped supply 5,000 tinned portions of its beef rendang to American GIs fighting in the Vietnam War.",
+    detail: ["On the plate", "In the take-home pouch"],
+    detailLabel: "Have it",
     photo: {
       src: "/images/food/daging-rendang.webp",
       alt: "Dark, glossy beef rendang in a white bowl, the gravy pooling around the meat.",
@@ -93,7 +93,7 @@ const spreads: Array<{
   },
 ];
 
-const alsoOn = ["Kambing Mysore", "Ayam Kapitan", "Nasi Biryani", "Mutton Kurma", "Crab Curry", "Roti Canai"];
+const alsoOn = ["Kambing Mysore", "Ayam Kapitan", "Sotong Goreng Apollo", "Kari Itik", "Kambing Kurma", "Nasi Briyani Udang", "Telur Ikan", "Lamb Shank"];
 
 export default function Signatures() {
   return (
@@ -106,10 +106,10 @@ export default function Signatures() {
             kicker="Chapter IV · From the counter"
             title={
               <>
-                What to order <em className="text-saffron-deep">first</em>
+                What to order <em className="text-green-deep">first</em>
               </>
             }
-            intro="Four dishes the house is known for. Start with one of these, then let the counter tempt you."
+            intro="Four dishes from the house's own must-try list. Start with one of these, then let the counter tempt you."
           />
         </Reveal>
 
@@ -123,7 +123,7 @@ export default function Signatures() {
               <Reveal className={cn("relative mx-auto w-full max-w-md", i % 2 === 1 && "md:order-2")}>
                 <figure className="relative">
                   {/* Arched frame, like the five-foot way */}
-                  <div className="group relative aspect-[4/5] overflow-hidden rounded-t-full border-[6px] border-[#FBF5E8] bg-paper-deep shadow-[0_30px_60px_-30px_rgba(36,20,12,0.7)] ring-1 ring-brass/60">
+                  <div className="group relative aspect-[4/5] overflow-hidden rounded-t-full border-[6px] border-mount bg-paper-deep shadow-[0_30px_60px_-30px_rgba(20,19,15,0.7)] ring-1 ring-green/60">
                     <Image
                       src={s.photo.src}
                       alt={s.photo.alt}
@@ -132,7 +132,7 @@ export default function Signatures() {
                       className="object-cover transition-transform duration-[2400ms] ease-out group-hover:scale-105"
                       style={{ objectPosition: s.photo.pos }}
                     />
-                    <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_-60px_60px_-40px_rgba(36,20,12,0.45)]" />
+                    <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_-60px_60px_-40px_rgba(20,19,15,0.45)]" />
                   </div>
                   <figcaption className="mt-2 text-right text-xs text-ink/55">{s.photo.credit}</figcaption>
                   {s.inset && (
@@ -145,26 +145,26 @@ export default function Signatures() {
                         sizes="14rem"
                         className="block h-auto w-full"
                       />
-                      <figcaption className="px-1 pt-1.5 text-xs italic leading-tight text-cinnamon">
+                      <figcaption className="px-1 pt-1.5 text-xs italic leading-tight text-ink">
                         {s.inset.caption}
                       </figcaption>
                     </figure>
                   )}
                 </figure>
-                <span className="font-display absolute -left-3 -top-6 text-7xl text-brass/80 drop-shadow-sm sm:-left-8 sm:text-8xl" aria-hidden>
+                <span className="font-display bevel absolute -left-3 -top-6 text-7xl text-yellow [-webkit-text-stroke:1.5px_var(--color-ink)] sm:-left-8 sm:text-8xl" aria-hidden>
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </Reveal>
 
               <Reveal delay={0.12}>
-                <p className="font-sign text-xs uppercase tracking-[0.3em] text-saffron-deep">{s.local}</p>
-                <h3 id={`sig-${s.id}`} className="font-display mt-2 text-5xl leading-none text-cinnamon sm:text-7xl">
+                <p className="font-sign text-xs uppercase tracking-[0.3em] text-green-deep">{s.local}</p>
+                <h3 id={`sig-${s.id}`} className="font-display sign-caps mt-2 text-5xl text-ink sm:text-7xl">
                   {s.name}
                 </h3>
                 <p className="mt-6 max-w-lg text-lg text-ink/85">{s.body}</p>
-                <div className="mt-7 border-t border-brass/50 pt-5">
-                  <p className="font-sign text-xs uppercase tracking-[0.25em] text-cinnamon/80">{s.detailLabel}</p>
-                  <p className="font-display mt-2 text-lg italic text-ink">{s.detail.join("  ·  ")}</p>
+                <div className="mt-7 border-t border-green/50 pt-5">
+                  <p className="font-sign text-xs uppercase tracking-[0.25em] text-ink/80">{s.detailLabel}</p>
+                  <p className="mt-2 text-lg italic text-ink">{s.detail.join("  ·  ")}</p>
                 </div>
               </Reveal>
             </article>
@@ -172,7 +172,7 @@ export default function Signatures() {
         </div>
 
         <Reveal className="mt-28 text-center">
-          <div className="mx-auto mb-8 size-36 overflow-hidden rounded-full border-[5px] border-[#FBF5E8] shadow-lg ring-1 ring-brass/60 sm:size-44">
+          <div className="mx-auto mb-8 size-36 overflow-hidden rounded-full border-[5px] border-mount shadow-lg ring-1 ring-green/60 sm:size-44">
             <Image
               src="/images/food/nasi-biryani.webp"
               alt="Golden nasi biryani topped with fried shallots and two red chillies."
@@ -182,18 +182,18 @@ export default function Signatures() {
               className="h-full w-full object-cover object-[62%_55%]"
             />
           </div>
-          <p className="font-sign text-xs uppercase tracking-[0.3em] text-cinnamon/80">Also on the counter</p>
-          <p className="font-display mx-auto mt-4 max-w-4xl text-2xl leading-relaxed text-cinnamon sm:text-3xl">
+          <p className="font-sign text-xs uppercase tracking-[0.3em] text-ink/80">Also on the signature menu</p>
+          <p className="font-display mx-auto mt-4 max-w-4xl text-3xl uppercase leading-relaxed text-ink sm:text-4xl">
             {alsoOn.map((d, i) => (
               <span key={d}>
                 {d}
-                {i < alsoOn.length - 1 && <span className="mx-3 text-saffron" aria-hidden>✦</span>}
+                {i < alsoOn.length - 1 && <span className="mx-3 text-green" aria-hidden>✦</span>}
               </span>
             ))}
           </p>
           <Link
             href="/menu"
-            className="mt-10 inline-flex min-h-12 items-center gap-3 rounded-full bg-cinnamon px-8 font-sign text-sm uppercase tracking-[0.2em] text-paper transition-colors duration-500 hover:bg-saffron-deep"
+            className="mt-10 inline-flex min-h-12 items-center gap-3 rounded-full bg-ink px-8 font-sign text-sm font-semibold uppercase tracking-[0.2em] text-yellow transition-colors duration-500 hover:bg-green-deep hover:text-paper"
           >
             Build your plate <span aria-hidden>→</span>
           </Link>

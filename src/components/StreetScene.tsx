@@ -94,7 +94,7 @@ export default function StreetScene({ className = "" }: { className?: string }) 
       {/* Faces left: he walks right to left while the street slides the other way */}
       <div className="absolute bottom-[5%] left-1/2 z-[2] h-[62%] -translate-x-1/2 md:left-[70%] md:h-[66%]">
         <KandarSeller
-          className="h-full w-auto -scale-x-100 drop-shadow-[0_12px_14px_rgba(36,20,12,0.25)]"
+          className="h-full w-auto -scale-x-100 drop-shadow-[0_12px_14px_rgba(20,19,15,0.25)]"
           style={{ "--step": "1.05s" } as CSSProperties}
         />
       </div>

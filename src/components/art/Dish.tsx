@@ -7,7 +7,7 @@ import type { Lauk } from "@/data/dishes";
 
 function Pieces({ lauk }: { lauk: Lauk }) {
   const { tone, edge, shape, id } = lauk;
-  const ink = "#24140C";
+  const ink = "#14130F";
   switch (shape) {
     case "chicken":
       return (
@@ -77,7 +77,7 @@ function Pieces({ lauk }: { lauk: Lauk }) {
         <g stroke={ink} strokeWidth="1.6">
           <path d="M-52,6 C-40,-40 30,-44 46,-4 C40,30 -20,42 -52,6 Z" fill={edge} />
           <path d="M-52,6 C-34,-6 -34,18 -52,6" fill="none" />
-          <circle cx="20" cy="-10" r="7" fill="#F5ECD9" />
+          <circle cx="20" cy="-10" r="7" fill="#FFFBEC" />
           <circle cx="21" cy="-10" r="3" fill={ink} />
           <path d="M34,8 q6,4 10,0" fill="none" />
           {[-30, 0, 30].map((x) => (
@@ -169,15 +169,15 @@ export default function Dish({
       </defs>
       {vessel === "bowl" && (
         <>
-          <circle r="94" fill="#C9B79A" stroke="#24140C" strokeWidth="2" />
-          <circle r="86" fill="#E9E4DA" stroke="#24140C" strokeWidth="1" opacity="0.9" />
+          <circle r="94" fill="#C9B79A" stroke="#14130F" strokeWidth="2" />
+          <circle r="86" fill="#E9E4DA" stroke="#14130F" strokeWidth="1" opacity="0.9" />
         </>
       )}
       {vessel === "tray" && (
-        <rect x="-96" y="-80" width="192" height="160" rx="18" fill="#BFC3C4" stroke="#24140C" strokeWidth="2" />
+        <rect x="-96" y="-80" width="192" height="160" rx="18" fill="#BFC3C4" stroke="#14130F" strokeWidth="2" />
       )}
       {vessel === "tray" ? (
-        <rect x="-86" y="-70" width="172" height="140" rx="12" fill={`url(#${gid})`} stroke="#24140C" strokeWidth="1" />
+        <rect x="-86" y="-70" width="172" height="140" rx="12" fill={`url(#${gid})`} stroke="#14130F" strokeWidth="1" />
       ) : (
         <circle r={vessel === "none" ? 90 : 76} fill={`url(#${gid})`} />
       )}

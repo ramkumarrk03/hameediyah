@@ -2,13 +2,12 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import TableDialog from "./TableDialog";
-import OpenBadge from "./OpenBadge";
 import { branches, original } from "@/data/branches";
 
-const label = "font-sign text-xs uppercase tracking-[0.28em] text-cinnamon/80";
+const label = "font-sign text-xs uppercase tracking-[0.28em] text-ink/80";
 const big = "font-display mt-3 text-2xl leading-snug text-ink sm:text-3xl";
 const link =
-  "mt-5 inline-flex min-h-11 items-center gap-2 font-sign text-xs uppercase tracking-[0.22em] text-saffron-deep underline decoration-brass underline-offset-[6px] transition-colors duration-500 hover:text-cinnamon";
+  "mt-5 inline-flex min-h-11 items-center gap-2 font-sign text-xs uppercase tracking-[0.22em] text-green-deep underline decoration-green underline-offset-[6px] transition-colors duration-500 hover:text-ink";
 
 export default function Visit() {
   return (
@@ -18,18 +17,18 @@ export default function Visit() {
           <SectionHeading
             id="visit-title"
             align="center"
-            kicker="Chapter VII · Come and eat"
+            kicker="Chapter IX · Come and eat"
             title={
               <>
-                Find the counter <em className="text-saffron-deep">on Lebuh Campbell</em>
+                Find the counter <em className="text-green-deep">on Campbell Street</em>
               </>
             }
-            intro="No booking needed. Walk in, point at what you want, and say how much kuah."
+            intro="Walk in, point at what you want, and say how much kuah. For events and private dining, call ahead."
           />
         </Reveal>
 
         <Reveal className="mt-14">
-          <figure className="relative overflow-hidden border border-brass/60 bg-paper-deep p-1.5">
+          <figure className="relative overflow-hidden border border-green/60 bg-paper-deep p-1.5">
             <div className="relative aspect-[16/9] sm:aspect-[21/9]">
               <Image
                 src="/images/shop/hameediyah-3.webp"
@@ -40,18 +39,18 @@ export default function Visit() {
               />
             </div>
             <figcaption className="absolute bottom-4 left-4 bg-ink/80 px-3 py-1.5 text-sm italic text-paper sm:bottom-6 sm:left-6">
-              Lunchtime on Lebuh Campbell. Come early.
+              Lunchtime on Campbell Street.
             </figcaption>
           </figure>
         </Reveal>
 
-        {/* The three things a visitor needs: where, when, how to reach us */}
+        {/* Where, call, write: from the family's own contact page */}
         <Reveal className="mt-16">
-          <dl className="grid divide-y divide-brass/40 border-y border-brass/40 text-center sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <dl className="signboard dotted-frame grid divide-y divide-dotted divide-green/60 rounded-2xl border-4 border-green text-center shadow-[0_24px_50px_-30px_rgba(20,19,15,0.6)] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             <div className="px-6 py-10">
               <dt className={label}>Where</dt>
               <dd className={big}>
-                164A Lebuh Campbell
+                164-A Lebuh Campbell
                 <span className="block text-lg text-ink/70 sm:text-xl">George Town, Penang</span>
               </dd>
               <dd>
@@ -61,26 +60,29 @@ export default function Visit() {
               </dd>
             </div>
             <div className="px-6 py-10">
-              <dt className={label}>When</dt>
-              <dd className={big}>
-                {original.hours}
-                <span className="block text-lg italic text-saffron-deep sm:text-xl">{original.closed}</span>
-              </dd>
-              <dd className="mt-4">
-                <OpenBadge />
-              </dd>
-              <dd className="mt-2 text-sm text-ink/60">Hours may change. Please call ahead.</dd>
-            </div>
-            <div className="px-6 py-10">
               <dt className={label}>Call</dt>
               <dd className={big}>
-                <a href={original.phoneHref} className="inline-block whitespace-nowrap py-1.5 hover:text-saffron-deep">
+                <a href={original.phoneHref} className="inline-block whitespace-nowrap py-1.5 hover:text-green-deep">
                   {original.phone}
                 </a>
               </dd>
+              <dd className="mt-2 text-sm text-ink/70">Please call for today&apos;s opening hours.</dd>
               <dd>
                 <a href={original.phoneHref} className={link}>
                   Tap to call <span aria-hidden>→</span>
+                </a>
+              </dd>
+            </div>
+            <div className="px-6 py-10">
+              <dt className={label}>Write</dt>
+              <dd className={`${big} break-all sm:text-2xl`}>
+                <a href={`mailto:${original.email}`} className="hover:text-green-deep">
+                  {original.email}
+                </a>
+              </dd>
+              <dd>
+                <a href={`mailto:${original.email}`} className={link}>
+                  Send an email <span aria-hidden>→</span>
                 </a>
               </dd>
             </div>
@@ -92,17 +94,32 @@ export default function Visit() {
           <TableDialog />
         </Reveal>
 
-        <Reveal className="mt-16 text-center">
-          <p className={label}>Also find us</p>
-          <p className="mx-auto mt-3 max-w-3xl text-ink/75">
+        {/* All six outlets */}
+        <div className="mt-24">
+          <Reveal className="text-center">
+            <p className={label}>Our outlets</p>
+            <h3 className="font-display sign-caps mt-3 text-4xl text-ink sm:text-6xl">Six counters, one family</h3>
+          </Reveal>
+          <ul className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {branches.map((b, i) => (
-              <span key={b.area}>
-                {b.name === "Hameediyah" ? b.area : `${b.name}, ${b.area}`}
-                {i < branches.length - 1 && <span aria-hidden className="mx-2 text-brass">·</span>}
-              </span>
+              <Reveal as="li" key={b.name} delay={(i % 3) * 0.06}>
+                <div className="relative aspect-[3/2] overflow-hidden border-4 border-green bg-paper-deep">
+                  <Image
+                    src={`/images/branches/${b.photo}.webp`}
+                    alt={b.photoAlt}
+                    fill
+                    sizes="(min-width: 1024px) 22rem, (min-width: 640px) 45vw, 92vw"
+                    className="object-cover"
+                  />
+                </div>
+                <h4 className="font-display mt-4 text-3xl uppercase leading-none text-ink">{b.name}</h4>
+                <p className="mt-1 font-sign text-xs font-semibold uppercase tracking-[0.2em] text-green-deep">{b.area}</p>
+                <p className="mt-2 text-sm text-ink/80">{b.address}</p>
+                {b.note && <p className="mt-1 text-sm italic text-ink/70">{b.note}</p>}
+              </Reveal>
             ))}
-          </p>
-        </Reveal>
+          </ul>
+        </div>
       </div>
     </section>
   );

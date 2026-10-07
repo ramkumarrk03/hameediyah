@@ -12,9 +12,9 @@ import { cn } from "@/lib/utils";
 const STEPS = ["Rice", "Lauk", "Kuah", "Your plate"] as const;
 
 const btnPrimary =
-  "inline-flex min-h-12 items-center gap-3 rounded-full bg-cinnamon px-7 font-sign text-sm uppercase tracking-[0.2em] text-paper transition-colors duration-500 hover:bg-saffron-deep disabled:cursor-not-allowed disabled:opacity-40";
+  "inline-flex min-h-12 items-center gap-3 rounded-full bg-ink px-7 font-sign text-sm font-semibold uppercase tracking-[0.2em] text-yellow transition-colors duration-500 hover:bg-green-deep hover:text-paper disabled:cursor-not-allowed disabled:opacity-40";
 const btnGhost =
-  "inline-flex min-h-12 items-center rounded-full border border-cinnamon/40 px-6 font-sign text-sm uppercase tracking-[0.2em] text-cinnamon transition-colors duration-500 hover:border-cinnamon";
+  "inline-flex min-h-12 items-center rounded-full border border-ink/40 px-6 font-sign text-sm uppercase tracking-[0.2em] text-ink transition-colors duration-500 hover:border-ink";
 
 export default function PlateBuilder() {
   const reduce = useReducedMotion();
@@ -51,11 +51,11 @@ export default function PlateBuilder() {
   return (
     <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
       {/* The plate stays in view while you build */}
-      <div className="paper sticky top-16 z-20 -mx-4 border-b border-brass/40 px-4 py-3 sm:top-20 lg:static lg:top-28 lg:mx-0 lg:border-0 lg:bg-none lg:p-0 lg:[background:none] lg:sticky">
+      <div className="paper sticky top-16 z-20 -mx-4 border-b border-green/40 px-4 py-3 sm:top-20 lg:static lg:top-28 lg:mx-0 lg:border-0 lg:bg-none lg:p-0 lg:[background:none] lg:sticky">
         <div className="mx-auto max-w-[13rem] sm:max-w-[18rem] lg:max-w-none">
           <Plate rice={rice} picked={picked} gravy={gravy} />
         </div>
-        <p aria-live="polite" className="mt-2 text-center font-sign text-xs uppercase tracking-[0.22em] text-cinnamon/80 lg:mt-4 lg:text-xs">
+        <p aria-live="polite" className="mt-2 text-center font-sign text-xs uppercase tracking-[0.22em] text-ink/80 lg:mt-4 lg:text-xs">
           {rice ? rice.local : "No rice yet"} · {picked.length} lauk · {gravyLevels[gravy].name}
         </p>
       </div>
@@ -75,8 +75,8 @@ export default function PlateBuilder() {
                   className={cn(
                     "flex min-h-11 items-center gap-2 rounded-full border px-4 font-sign text-xs uppercase tracking-[0.18em] transition-colors duration-500",
                     step === i
-                      ? "border-cinnamon bg-cinnamon text-paper"
-                      : "border-cinnamon/30 text-cinnamon enabled:hover:border-cinnamon disabled:opacity-40",
+                      ? "border-2 border-green bg-yellow font-semibold text-ink"
+                      : "border-ink/30 text-ink enabled:hover:border-ink disabled:opacity-40",
                   )}
                 >
                   <span className="font-display text-base normal-case tracking-normal">{i + 1}</span>
@@ -98,15 +98,15 @@ export default function PlateBuilder() {
             >
               {step === 0 && (
                 <fieldset>
-                  <legend className="font-display text-4xl text-cinnamon sm:text-5xl">First, the rice</legend>
-                  <p className="mt-3 max-w-md text-ink/75">Every nasi kandar plate starts the same way. Which will it be?</p>
+                  <legend className="font-display sign-caps text-4xl text-ink sm:text-5xl">First, the rice</legend>
+                  <p className="mt-3 max-w-md text-ink/75">Every Nasi Kandar plate starts the same way. Which will it be?</p>
                   <div className="mt-8 grid gap-4 sm:grid-cols-2">
                     {rices.map((r) => (
                       <label
                         key={r.id}
                         className={cn(
-                          "group relative cursor-pointer border bg-[#FBF5E8] p-5 transition-[border-color,box-shadow] duration-500 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-saffron",
-                          rice?.id === r.id ? "border-cinnamon shadow-[0_18px_40px_-24px_rgba(107,58,30,0.8)]" : "border-brass/50 hover:border-cinnamon/60",
+                          "group relative cursor-pointer border bg-mount p-5 transition-[border-color,box-shadow] duration-500 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-green",
+                          rice?.id === r.id ? "border-2 border-green bg-yellow-soft shadow-[0_18px_40px_-24px_rgba(20,19,15,0.8)]" : "border-green/50 hover:border-ink/60",
                         )}
                       >
                         <input
@@ -127,11 +127,11 @@ export default function PlateBuilder() {
                                 : "radial-gradient(circle at 40% 35%, #fff, #EDE5D3)",
                           }}
                         />
-                        <span className="font-display mt-4 block text-2xl text-cinnamon">{r.name}</span>
-                        <span className="font-sign block text-xs uppercase tracking-[0.2em] text-saffron-deep">{r.local}</span>
+                        <span className="font-display mt-4 block text-2xl text-ink">{r.name}</span>
+                        <span className="font-sign block text-xs uppercase tracking-[0.2em] text-green-deep">{r.local}</span>
                         <span className="mt-3 block text-sm text-ink/75">{r.note}</span>
                         {rice?.id === r.id && (
-                          <span className="absolute right-4 top-4 font-sign text-xs uppercase tracking-[0.2em] text-cinnamon">
+                          <span className="absolute right-4 top-4 font-sign text-xs uppercase tracking-[0.2em] text-ink">
                             Chosen ✓
                           </span>
                         )}
@@ -143,12 +143,12 @@ export default function PlateBuilder() {
 
               {step === 1 && (
                 <div>
-                  <h2 className="font-display text-4xl text-cinnamon sm:text-5xl">Now, the counter</h2>
+                  <h2 className="font-display sign-caps text-4xl text-ink sm:text-5xl">Now, the counter</h2>
                   <p className="mt-3 max-w-md text-ink/75">
                     Tap a tray to add it to your plate, up to {MAX_LAUK}. Tap the story mark to learn what it is.
                   </p>
                   {/* A wooden counter of steel trays */}
-                  <div className="mt-8 rounded-sm bg-[linear-gradient(#8A5A32,#6B3A1E)] p-3 shadow-[inset_0_2px_0_rgba(255,255,255,0.15),0_20px_40px_-25px_rgba(36,20,12,0.9)] sm:p-4">
+                  <div className="mt-8 rounded-sm bg-[linear-gradient(#0E8A42,#07672F)] p-3 shadow-[inset_0_2px_0_rgba(255,255,255,0.15),0_20px_40px_-25px_rgba(20,19,15,0.9)] sm:p-4">
                     <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                       {lauk.map((l) => {
                         const on = picked.some((x) => x.id === l.id);
@@ -162,7 +162,7 @@ export default function PlateBuilder() {
                               onClick={() => toggle(l)}
                               className={cn(
                                 "flex w-full flex-col items-center rounded-sm bg-[#E9E2D4] p-2 pb-3 text-center transition-[transform,box-shadow,opacity] duration-500 disabled:opacity-40",
-                                on ? "-translate-y-1 shadow-[0_0_0_3px_#E0A526]" : "hover:-translate-y-0.5",
+                                on ? "-translate-y-1 shadow-[0_0_0_3px_#0B9444,0_0_0_6px_#FFDE16]" : "hover:-translate-y-0.5",
                               )}
                             >
                               <Dish lauk={l} vessel="tray" className="h-auto w-full" />
@@ -174,7 +174,7 @@ export default function PlateBuilder() {
                               type="button"
                               onClick={() => openStory(l)}
                               aria-label={`The story of ${l.name}`}
-                              className="absolute right-1 top-1 grid size-10 place-items-center rounded-full bg-paper/90 font-display text-sm italic text-cinnamon shadow"
+                              className="absolute right-1 top-1 grid size-10 place-items-center rounded-full bg-paper/90 font-body text-sm italic text-ink shadow"
                             >
                               i
                             </button>
@@ -188,10 +188,10 @@ export default function PlateBuilder() {
 
               {step === 2 && (
                 <div>
-                  <h2 className="font-display text-4xl text-cinnamon sm:text-5xl">How much kuah?</h2>
+                  <h2 className="font-display sign-caps text-4xl text-ink sm:text-5xl">How much kuah?</h2>
                   <p className="mt-3 max-w-md text-ink/75">
                     The server ladles <em>kuah campur</em>, mixed curries from the counter, over everything. Locals have
-                    a word for the most generous pour: <em>banjir</em>, flooded.
+                    a word for the most generous pour: <em>banjir</em> (flooded).
                   </p>
                   <div className="mt-10">
                     <label htmlFor="gravy" className="sr-only">
@@ -217,7 +217,7 @@ export default function PlateBuilder() {
                             onClick={() => setGravy(g.level)}
                             className={cn(
                               "font-sign text-xs uppercase tracking-[0.15em] transition-colors duration-500 sm:text-xs",
-                              gravy === g.level ? "text-saffron-deep" : "text-cinnamon/60",
+                              gravy === g.level ? "text-green-deep" : "text-ink/60",
                             )}
                           >
                             {g.name}
@@ -225,7 +225,7 @@ export default function PlateBuilder() {
                         </li>
                       ))}
                     </ul>
-                    <p className="font-display mt-8 text-3xl text-cinnamon">{gravyLevels[gravy].name}</p>
+                    <p className="font-display sign-caps mt-8 text-3xl text-ink">{gravyLevels[gravy].name}</p>
                     <p className="mt-1 text-lg text-ink/80">{gravyLevels[gravy].note}</p>
                   </div>
                 </div>
@@ -233,27 +233,27 @@ export default function PlateBuilder() {
 
               {step === 3 && (
                 <div>
-                  <p className="font-sign text-xs uppercase tracking-[0.3em] text-saffron-deep">Ready to eat</p>
-                  <h2 className="font-display mt-2 text-4xl text-cinnamon sm:text-6xl">Your plate, the 1907 way</h2>
-                  <dl className="mt-8 divide-y divide-brass/40 border-y border-brass/40">
+                  <p className="font-sign text-xs uppercase tracking-[0.3em] text-green-deep">Ready to eat</p>
+                  <h2 className="font-display sign-caps mt-2 text-4xl text-ink sm:text-6xl">Your plate, the 1907 way</h2>
+                  <dl className="mt-8 divide-y divide-green/40 border-y border-green/40">
                     <div className="grid grid-cols-[6rem_1fr] gap-4 py-4">
-                      <dt className="font-sign text-xs uppercase tracking-[0.2em] text-cinnamon/80">Rice</dt>
+                      <dt className="font-sign text-xs uppercase tracking-[0.2em] text-ink/80">Rice</dt>
                       <dd className="font-display text-xl">{rice?.name}</dd>
                     </div>
                     <div className="grid grid-cols-[6rem_1fr] gap-4 py-4">
-                      <dt className="font-sign text-xs uppercase tracking-[0.2em] text-cinnamon/80">Lauk</dt>
+                      <dt className="font-sign text-xs uppercase tracking-[0.2em] text-ink/80">Lauk</dt>
                       <dd className="font-display text-xl">{picked.map((p) => p.name).join(", ")}</dd>
                     </div>
                     <div className="grid grid-cols-[6rem_1fr] gap-4 py-4">
-                      <dt className="font-sign text-xs uppercase tracking-[0.2em] text-cinnamon/80">Kuah</dt>
+                      <dt className="font-sign text-xs uppercase tracking-[0.2em] text-ink/80">Kuah</dt>
                       <dd className="font-display text-xl">
                         {gravyLevels[gravy].name} <span className="text-base italic text-ink/70">· {gravyLevels[gravy].note}</span>
                       </dd>
                     </div>
                   </dl>
                   <p className="mt-6 max-w-md text-ink/80">
-                    Bring this order to the counter at 164A Lebuh Campbell. Point at the trays, say how much kuah, and the
-                    plate is yours.
+                    Take this order to the counter at 164-A Campbell Street, point at the trays and say how much kuah.
+                    Ask what is cooking today.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
                     <Link href="/#visit" className={btnPrimary}>
@@ -292,26 +292,26 @@ export default function PlateBuilder() {
         onClose={() => setStory(null)}
         onClick={(e) => e.target === dialog.current && dialog.current?.close()}
         aria-labelledby="story-title"
-        className="m-auto w-[min(34rem,calc(100vw-2rem))] border border-brass bg-paper p-0 text-ink shadow-2xl backdrop:bg-ink/60 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(34rem,calc(100vw-2rem))] border border-green bg-paper p-0 text-ink shadow-2xl backdrop:bg-ink/60 backdrop:backdrop-blur-sm"
       >
         {story && (
           <div className="p-6 sm:p-8">
             <div className="flex items-start gap-5">
               <Dish lauk={story} className="size-28 shrink-0 sm:size-32" />
               <div>
-                <p className="font-sign text-xs uppercase tracking-[0.25em] text-saffron-deep">{story.english}</p>
-                <h3 id="story-title" className="font-display mt-1 text-3xl leading-tight text-cinnamon">
+                <p className="font-sign text-xs uppercase tracking-[0.25em] text-green-deep">{story.english}</p>
+                <h3 id="story-title" className="font-display sign-caps mt-1 text-3xl text-ink">
                   {story.name}
                 </h3>
               </div>
             </div>
             <dl className="mt-6 space-y-4">
               <div>
-                <dt className="font-sign text-xs uppercase tracking-[0.25em] text-cinnamon/80">What it is</dt>
+                <dt className="font-sign text-xs uppercase tracking-[0.25em] text-ink/80">What it is</dt>
                 <dd className="mt-1 text-lg">{story.what}</dd>
               </div>
               <div>
-                <dt className="font-sign text-xs uppercase tracking-[0.25em] text-cinnamon/80">Why it matters</dt>
+                <dt className="font-sign text-xs uppercase tracking-[0.25em] text-ink/80">Why it matters</dt>
                 <dd className="mt-1 text-lg">{story.why}</dd>
               </div>
             </dl>

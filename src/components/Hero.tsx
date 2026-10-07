@@ -14,12 +14,12 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="hero-sky relative h-svh min-h-[680px] overflow-hidden bg-[linear-gradient(180deg,#F7ECD6_0%,#F6E2B8_45%,#F1CF8C_75%,#E9BC74_100%)]"
+      className="hero-sky relative h-svh min-h-[680px] overflow-hidden bg-[linear-gradient(180deg,#FFFBEC_0%,#FFF5C6_45%,#FFEB85_75%,#FFE24A_100%)]"
     >
       {/* ---- Background: the living street ---- */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[10%] top-[10%] size-[24rem] rounded-full bg-[radial-gradient(circle,rgba(255,236,170,0.95)_0%,rgba(242,194,48,0.35)_38%,transparent_70%)]"
+        className="pointer-events-none absolute right-[10%] top-[10%] size-[24rem] rounded-full bg-[radial-gradient(circle,rgba(255,246,190,0.95)_0%,rgba(255,222,22,0.4)_38%,transparent_70%)]"
       />
       {CLOUDS.map((c, i) => (
         <div
@@ -38,7 +38,7 @@ export default function Hero() {
       {/* ---- Wash: solid paper behind the text, fading to clear over the street ---- */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#F6EAD2_0%,rgba(246,234,210,0.95)_64%,rgba(246,234,210,0)_80%)] md:bg-[linear-gradient(90deg,#F6EAD2_0%,rgba(246,234,210,0.96)_30%,rgba(246,234,210,0.7)_44%,rgba(246,234,210,0)_62%)]"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,#FFFBEC_0%,rgba(255,251,236,0.95)_64%,rgba(255,251,236,0)_80%)] md:bg-[linear-gradient(90deg,#FFFBEC_0%,rgba(255,251,236,0.96)_30%,rgba(255,251,236,0.7)_44%,rgba(255,251,236,0)_62%)]"
       />
       <div
         aria-hidden
@@ -48,39 +48,39 @@ export default function Hero() {
       {/* ---- Foreground: the headline ---- */}
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col px-4 pt-24 sm:px-8 md:justify-center md:pt-16">
         <div className="max-w-xl">
-          <p style={d(0.1)} className="rise font-sign text-xs uppercase tracking-[0.32em] text-saffron-deep sm:text-sm">
-            Nasi kandar · Lebuh Campbell, George Town
+          <p style={d(0.1)} className="rise font-sign text-xs font-semibold uppercase tracking-[0.32em] text-green-deep sm:text-sm">
+            Oldest Nasi Kandar in Malaysia · Lebuh Campbell
           </p>
           <h1
             style={d(0.2)}
             id="hero-title"
-            className="rise font-display letterpress mt-4 text-[2.9rem] leading-[0.98] text-cinnamon sm:text-6xl lg:text-[4.9rem]"
+            className="rise font-display sign-caps letterpress mt-4 text-[3.1rem] text-ink sm:text-7xl lg:text-[6.4rem]"
           >
             Rice &amp; curry,
             <br />
-            <em className="font-normal text-saffron-deep">carried since 1907.</em>
+            <em className="text-green-deep">carried since 1907.</em>
           </h1>
-          <p style={d(0.35)} className="rise mt-5 text-lg text-ink/85 sm:text-xl">
-            Malaysia&apos;s oldest nasi kandar began with a bamboo pole and two pots on Campbell Street. The same
-            family still pours the curries at 164A.
+          <p style={d(0.35)} className="rise mt-4 text-[1.05rem] text-ink/85 sm:mt-5 sm:text-xl">
+            Malaysia&apos;s oldest Nasi Kandar began with two baskets on a kandar pole, carried through the streets
+            of Penang. Seven generations on, the same family serves it at 164-A Campbell Street.
           </p>
           <div style={d(0.5)} className="rise mt-8 flex flex-wrap items-center gap-4">
             <Link
               href="/menu"
-              className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-cinnamon px-7 font-sign text-sm uppercase tracking-[0.2em] text-paper shadow-[0_10px_30px_-12px_rgba(107,58,30,0.9)] transition-colors duration-500 hover:bg-saffron-deep"
+              className="group inline-flex min-h-12 items-center gap-3 rounded-full bg-ink px-7 font-sign text-sm font-semibold uppercase tracking-[0.2em] text-yellow shadow-[0_10px_30px_-12px_rgba(20,19,15,0.9)] transition-colors duration-500 hover:bg-green-deep hover:text-paper"
             >
               Build your plate
               <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">→</span>
             </Link>
             <Link
               href="/#visit"
-              className="inline-flex min-h-12 items-center rounded-full border border-cinnamon/40 bg-paper/60 px-7 font-sign text-sm uppercase tracking-[0.2em] text-cinnamon backdrop-blur-sm transition-colors duration-500 hover:border-cinnamon hover:bg-paper/80"
+              className="inline-flex min-h-12 items-center rounded-full border-2 border-green bg-paper/70 px-7 font-sign text-sm font-semibold uppercase tracking-[0.2em] text-green-deep backdrop-blur-sm transition-colors duration-500 hover:bg-yellow hover:text-ink"
             >
-              Find us at 164A
+              Find us at 164-A
             </Link>
           </div>
-          <p lang="ta" className="font-tamil mt-10 hidden text-lg text-cinnamon md:block">
-            கந்தர் <span lang="en" className="font-display text-base italic text-ink/70">· kandar, the shoulder pole</span>
+          <p className="mt-10 hidden font-sign text-sm font-semibold uppercase tracking-[0.24em] text-ink md:block">
+            Kandar <span className="font-body text-base normal-case tracking-normal italic text-ink/70">· the shoulder pole that gave Nasi Kandar its name</span>
           </p>
         </div>
       </div>

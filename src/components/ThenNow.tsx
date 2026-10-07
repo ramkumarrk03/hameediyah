@@ -87,7 +87,7 @@ export default function ThenNow({
       onPointerCancel={up}
       onKeyDown={key}
       onDragStart={(e) => e.preventDefault()}
-      className={`relative isolate ${aspect} w-full ${grabbing ? "cursor-grabbing" : "cursor-ew-resize"} touch-none select-none [&_img]:pointer-events-none [&_img]:select-none [-webkit-user-drag:none] overflow-hidden border-[10px] border-[#FBF5E8] shadow-[0_30px_60px_-30px_rgba(36,20,12,0.6)] outline-none ring-1 ring-brass/60 focus-visible:ring-2 focus-visible:ring-saffron`}
+      className={`relative isolate ${aspect} w-full ${grabbing ? "cursor-grabbing" : "cursor-ew-resize"} touch-none select-none [&_img]:pointer-events-none [&_img]:select-none [-webkit-user-drag:none] overflow-hidden border-[10px] border-mount shadow-[0_30px_60px_-30px_rgba(20,19,15,0.6)] outline-none ring-1 ring-green/60 focus-visible:ring-2 focus-visible:ring-green`}
     >
       <div className="pointer-events-none absolute inset-0">{now}</div>
       <motion.div className="pointer-events-none absolute inset-0" style={{ clipPath }}>
@@ -101,10 +101,10 @@ export default function ThenNow({
         {nowLabel}
       </span>
 
-      <motion.div aria-hidden className="pointer-events-none absolute inset-y-0 z-20 w-0.5 -translate-x-1/2 bg-[#FBF5E8]" style={{ left }} />
+      <motion.div aria-hidden className="pointer-events-none absolute inset-y-0 z-20 w-0.5 -translate-x-1/2 bg-mount" style={{ left }} />
       <motion.div aria-hidden className="pointer-events-none absolute top-1/2 z-30 -translate-x-1/2 -translate-y-1/2" style={{ left }}>
         <div
-          className={`grid size-12 place-items-center rounded-full border-2 border-brass bg-paper text-cinnamon shadow-lg transition-transform duration-300 ${
+          className={`grid size-12 place-items-center rounded-full border-2 border-green bg-paper text-ink shadow-lg transition-transform duration-300 ${
             grabbing ? "scale-90" : ""
           }`}
         >
